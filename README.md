@@ -2,4 +2,4 @@
 
 
 
-An introductory project to `Cairo` built using `Protostar` framework
+An introductory project to `Cairo` using `Protostar` framework

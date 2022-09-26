@@ -36,3 +36,13 @@ func store_name{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}
     stored_name.emit(caller, _name);
 
 }
+
+
+@view 
+func get_name{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr} (_address: felt) {
+    // fetch name by passing _address parameter to names state var
+    let (name) = names.read(_address);
+
+    // return fetched name
+    return (name);
+}
