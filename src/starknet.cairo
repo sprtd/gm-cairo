@@ -14,7 +14,7 @@ func stored_name(address: felt, name: felt) {
 }
 
 @constructor 
-func constructor{syscall_ptr: felt*, perdesen_ptr: HashBuiltin*, range_check_ptr} (_name: felt) {
+func constructor{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr} (_name: felt) {
     let (caller) = get_caller_address();
 
     names.write(caller, _name);
@@ -35,14 +35,16 @@ func store_name{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}
     // emit `stored_name` event
     stored_name.emit(caller, _name);
 
+    return();
+
 }
 
 
 @view 
-func get_name{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr} (_address: felt) {
+func get_name{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr} (_address: felt) -> (name: felt) {
     // fetch name by passing _address parameter to names state var
     let (name) = names.read(_address);
 
     // return fetched name
-    return (name);
+    return (name,);
 }
